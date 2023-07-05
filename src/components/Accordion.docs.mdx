@@ -1,0 +1,23 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks";
+import * as AccordionStories from "./Accordion.stories";
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+This component is heavily based on [Accordion - shadcn/ui](https://ui.shadcn.com/docs/components/accordion).
+
+## Features
+
+- Each item is collapsible/expandable on clicking the title
+- Built-in animations for the content and the icon
+- Markdown support for contents
+- Sensible default styling for markdown
+
+## Example
+
+<Canvas of={AccordionStories.BasicUsage} />
+
+## Props
+
+<ArgTypes />
