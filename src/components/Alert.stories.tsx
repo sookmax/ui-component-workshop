@@ -8,11 +8,14 @@ const meta = {
   component: Alert,
   decorators: [
     (Story) => (
-      <div className="max-w-xl bg-white">
+      <div className="w-[500px] bg-white">
         <Story />
       </div>
     ),
   ],
+  parameters: {
+    layout: "centered",
+  },
   // tags: ["autodocs"],
 } satisfies Meta<typeof Alert>;
 
