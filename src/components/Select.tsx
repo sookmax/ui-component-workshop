@@ -9,6 +9,8 @@ export type SelectProps = {
   placeholder?: string;
   label?: string;
   items: Item[];
+  className?: string;
+  disabled?: boolean;
 };
 
 type Item = {
@@ -16,7 +18,13 @@ type Item = {
   value: string;
 };
 
-export default function Select({ placeholder, label, items }: SelectProps) {
+export default function Select({
+  placeholder,
+  label,
+  items,
+  className,
+  disabled,
+}: SelectProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>();
 
@@ -29,8 +37,12 @@ export default function Select({ placeholder, label, items }: SelectProps) {
     >
       <SelectPrimitive.Trigger
         className={cn(
-          "flex h-10 w-full items-center justify-between rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm placeholder:text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          "flex h-10 w-full items-center justify-between rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm",
+          "placeholder:text-gray-200 disabled:cursor-not-allowed disabled:opacity-50",
+          "focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2",
+          className
         )}
+        disabled={disabled}
       >
         <SelectPrimitive.Value
           asChild={!value && placeholder ? true : false}
