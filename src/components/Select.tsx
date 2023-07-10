@@ -11,6 +11,7 @@ export type SelectProps = {
   items: Item[];
   className?: string;
   disabled?: boolean;
+  triggerId?: string;
 };
 
 type Item = {
@@ -24,6 +25,7 @@ export default function Select({
   items,
   className,
   disabled,
+  triggerId,
 }: SelectProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<string>();
@@ -37,12 +39,13 @@ export default function Select({
     >
       <SelectPrimitive.Trigger
         className={cn(
-          "flex h-10 w-full items-center justify-between rounded-md border border-gray-400 bg-transparent px-3 py-2 text-sm",
+          "flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm",
           "placeholder:text-gray-200 disabled:cursor-not-allowed disabled:opacity-50",
           "focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2",
           className
         )}
         disabled={disabled}
+        id={triggerId}
       >
         <SelectPrimitive.Value
           asChild={!value && placeholder ? true : false}

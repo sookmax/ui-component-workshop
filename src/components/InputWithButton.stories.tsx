@@ -30,3 +30,16 @@ export const Default: Story = {
     },
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    input: {
+      ...Default.args?.input,
+      disabled: true,
+    },
+    button: {
+      ...Default.args?.button,
+      disabled: true,
+    },
+  },
+};

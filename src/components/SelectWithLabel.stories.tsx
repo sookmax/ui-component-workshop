@@ -33,9 +33,11 @@ export const Default: Story = {
         { value: "banana", label: "Banana" },
         { value: "cherry", label: "Cherry" },
       ],
+      triggerId: "fruit-select",
     },
     label: {
       children: "Your favorite fruit",
+      htmlFor: "fruit-select",
     },
   },
 };

@@ -1,19 +1,22 @@
-import { Button, ButtonProps } from "./Button";
+import { cn } from "../utils/cn";
 import Input, { InputProps } from "./Input";
+import WithButton, { WithButtonProps } from "./WithButton";
 
-export type InputWithButtonProps = {
+export type InputWithButtonProps = WithButtonProps & {
   input?: InputProps;
-  button?: ButtonProps;
 };
 
 export default function InputWithButton({
-  input,
-  button,
+  input = {},
+  ...withButtonProps
 }: InputWithButtonProps) {
+  const { className: inputClassName, ...inputRest } = input;
+
   return (
-    <div className="flex space-x-2">
-      <Input {...input} />
-      <Button {...button} />
-    </div>
+    <WithButton {...withButtonProps}>
+      {({ className }) => (
+        <Input className={cn(inputClassName, className)} {...inputRest} />
+      )}
+    </WithButton>
   );
 }
