@@ -5,6 +5,7 @@ import { cn } from "../utils/cn";
 export type WithLabelProps = {
   className?: string;
   label?: LabelProps;
+  location?: "top" | "left" | "right";
 };
 
 type WithLabelInternalProps = WithLabelProps & {
@@ -15,15 +16,27 @@ export default function WithLabel({
   className,
   label = {},
   children,
+  location = "top",
 }: WithLabelInternalProps) {
   const { className: labelClassName, ...labelRest } = label;
 
   return (
-    <div className={cn("group flex flex-col-reverse", className)} data-dd>
+    <div
+      className={cn(
+        location === "top" && "flex flex-col-reverse",
+        location === "left" && "flex flex-row-reverse items-center",
+        location === "right" && "flex items-center",
+        className
+      )}
+      data-dd
+    >
       {children({ className: "peer" })}
       <Label
         className={cn(
-          "mb-1 text-xs text-slate-600",
+          location === "top" && "mb-1",
+          location === "left" && "mr-2",
+          location === "right" && "ml-2",
+          "text-xs text-slate-600",
           "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
           "aria-disabled:cursor-not-allowed aria-disabled:opacity-70",
           labelClassName

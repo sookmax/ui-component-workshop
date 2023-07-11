@@ -21,6 +21,7 @@
     "@radix-ui/react-presence": "^1.0.1",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
     "class-variance-authority": "^0.6.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
