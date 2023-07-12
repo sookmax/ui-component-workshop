@@ -35,7 +35,7 @@ export default function WithLabel({
         className={cn(
           location === "top" && "mb-1",
           location === "left" && "mr-2",
-          location === "right" && "ml-2",
+          location === "right" && "ml-2 grow",
           "text-xs text-slate-600",
           "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
           "aria-disabled:cursor-not-allowed aria-disabled:opacity-70",

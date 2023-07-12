@@ -12,28 +12,31 @@ const Switch = React.forwardRef<
   Omit<React.ComponentPropsWithoutRef<typeof SwitchImpl>, "id"> & {
     label?: string;
   }
->(function Switch({ label, ...switchImplProps }) {
+>(function Switch({ label, ...switchImplProps }, forwardedRef) {
   if (label) {
     const { className: switchImplClassName, ...switchImplPropsRest } =
       switchImplProps;
 
+    const switchId = `switch-${label.replace(/\s+/g, "_")}`;
+
     return (
       <WithLabel
-        label={{ children: label, htmlFor: `switch-${label}` }}
+        label={{ children: label, htmlFor: switchId }}
         location="right"
       >
         {({ className }) => (
           <SwitchImpl
             className={cn(switchImplClassName, className)}
-            id={`switch-${label}`}
+            id={switchId}
             {...switchImplPropsRest}
+            ref={forwardedRef}
           />
         )}
       </WithLabel>
     );
   }
 
-  return <SwitchImpl {...switchImplProps} />;
+  return <SwitchImpl {...switchImplProps} ref={forwardedRef} />;
 });
 
 const SwitchImpl = React.forwardRef<
