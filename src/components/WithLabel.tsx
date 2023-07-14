@@ -28,7 +28,6 @@ export default function WithLabel({
         location === "right" && "flex items-center",
         className
       )}
-      data-dd
     >
       {children({ className: "peer" })}
       <Label
