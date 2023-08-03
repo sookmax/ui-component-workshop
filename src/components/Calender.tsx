@@ -1,28 +1,40 @@
 import { useState } from "react";
 import { format } from "date-fns";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, DayPickerSingleProps } from "react-day-picker";
 import { cn } from "../utils/cn";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
-export default function Calender() {
+export default function Calender({
+  selected,
+  onSelect,
+  disabled,
+  initialFocus,
+}: {
+  selected?: Date | undefined;
+  onSelect?: (date: Date | undefined) => void;
+  disabled?: DayPickerSingleProps["disabled"];
+  initialFocus?: DayPickerSingleProps["initialFocus"];
+}) {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
 
   const onDayOrMonthChange = (date: Date | undefined) => {
-    if (date) {
-      console.log(format(date, "yyyy-MM-dd / eeee"));
-    }
-    setSelectedDay(date);
+    // if (date) {
+    //   console.log(format(date, "yyyy-MM-dd / eeee"));
+    // }
+    onSelect?.(date) || setSelectedDay(date);
   };
 
   return (
     <DayPicker
       mode="single"
-      selected={selectedDay}
+      selected={selected || selectedDay}
       onSelect={onDayOrMonthChange}
       showOutsideDays={true}
       fixedWeeks={true}
-      month={selectedDay}
+      month={selected || selectedDay}
       onMonthChange={onDayOrMonthChange}
+      disabled={disabled}
+      initialFocus={initialFocus}
       formatters={{
         formatWeekdayName: (date) => {
           const weekday = format(date, "eeeee");
