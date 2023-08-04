@@ -129,7 +129,10 @@ export default function FormBasic2() {
                     return (
                       <SelectPrimitive.Root
                         value={value}
-                        onValueChange={onChange}
+                        onValueChange={(value) => {
+                          // console.log(value);
+                          onChange(value);
+                        }}
                       >
                         <SelectPrimitive.Trigger
                           className={cn(

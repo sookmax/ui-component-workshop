@@ -46,7 +46,7 @@ export const Trigger = React.forwardRef<
     >
       {children}
       <RadixSelect.Icon
-        className={cn("transition-transform", open && "rotate-180")}
+        className={cn("transition-transform ml-2", open && "rotate-180")}
       >
         <ChevronDownIcon className="h-4 w-4 opacity-50" />
       </RadixSelect.Icon>
