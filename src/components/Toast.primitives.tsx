@@ -30,6 +30,7 @@ const Toast = React.forwardRef<
       ref={ref}
       className={cn(
         `group pointer-events-auto relative flex w-full items-center justify-between 
+        bg-white
       space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all 
       data-[swipe=cancel]:translate-x-0 
       data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] 

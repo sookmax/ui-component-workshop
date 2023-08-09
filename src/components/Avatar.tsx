@@ -1,4 +1,4 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import { AvatarRoot, AvatarImage, AvatarFallback } from "./Avatar.primitives";
 
 type AvatarProps = {
   /**
@@ -15,16 +15,16 @@ type AvatarProps = {
 
 export default function Avatar({ imageUrl, fallbackText }: AvatarProps) {
   return (
-    <AvatarPrimitive.Root className="relative inline-block h-10 w-10 truncate rounded-full bg-gray-200">
-      {imageUrl && <AvatarPrimitive.Image src={imageUrl} />}
+    <AvatarRoot className="relative inline-block h-10 w-10 rounded-full bg-gray-200">
+      {imageUrl && <AvatarImage src={imageUrl} />}
       {fallbackText && (
-        <AvatarPrimitive.Fallback
+        <AvatarFallback
           delayMs={imageUrl && fallbackText ? 500 : undefined}
           className="absolute flex h-full w-full items-center justify-center px-[5px] text-sm"
         >
           <span className="w-full truncate text-center">{fallbackText}</span>
-        </AvatarPrimitive.Fallback>
+        </AvatarFallback>
       )}
-    </AvatarPrimitive.Root>
+    </AvatarRoot>
   );
 }

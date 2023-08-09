@@ -9,6 +9,7 @@ import {
   Primary,
   ArgTypes,
   Stories,
+  Subheading,
 } from "@storybook/blocks";
 
 /* TODO: update import to your tailwind styles file */
@@ -34,9 +35,12 @@ const preview: Preview = {
           <Title />
           <Subtitle />
           <Description />
-          <Primary />
-          <ArgTypes />
-          {/* <Stories /> */}
+          {/* <Primary /> */}
+          <div>
+            <h2>Props</h2>
+            <ArgTypes />
+          </div>
+          <Stories />
         </>
       ),
     },

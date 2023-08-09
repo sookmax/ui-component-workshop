@@ -14,21 +14,26 @@ import {
   FormLabel,
   FormMessage,
 } from "./Form.primitives";
-import Input from "./Input";
+import { Textarea } from "./Textarea.primitives";
 import { toast } from "./Toast.hooks";
 import { cn } from "../utils/cn";
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  bio: z
+    .string()
+    .min(10, {
+      message: "Bio must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Bio must not be longer than 160 characters.",
+    }),
 });
 
-export default function InputForm() {
+export default function TextareaForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      bio: "",
     },
   });
 
@@ -43,32 +48,43 @@ export default function InputForm() {
     });
   }
 
+  const bioString = form.watch("bio");
+
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="username"
-          render={({ field, fieldState }) => {
-            return (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
+          name="bio"
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <FormLabel>Bio</FormLabel>
+              <div>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
+                  <Textarea
+                    placeholder="Tell us a little bit about yourself"
                     className={cn(
+                      "resize-none h-[150px]",
                       fieldState.error && "focus-visible:ring-red-700"
                     )}
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
+                <p
+                  className={cn(
+                    "text-right text-xs mt-1",
+                    bioString.length > 160 || fieldState.error
+                      ? "text-red-500"
+                      : "text-gray-500"
+                  )}
+                >{`${bioString.length} / 160`}</p>
+              </div>
+              <FormDescription>
+                ℹ️ You can <span>@mention</span> other users and organizations.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
         />
         <Button type="submit">Submit</Button>
       </form>

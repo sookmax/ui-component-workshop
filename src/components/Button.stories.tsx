@@ -35,3 +35,9 @@ export const Outline: Story = {
     variant: "outline",
   },
 };
+
+export const Link: Story = {
+  args: {
+    variant: "link",
+  },
+};

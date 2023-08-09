@@ -1,45 +1,29 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Checkbox } from "./Checkbox";
+import HoverCard from "./HoverCard";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  component: Checkbox,
+  component: HoverCard,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-  args: {
-    defaultChecked: true,
-  },
   //   decorators: [
   //     (Story) => (
-  //       <div className="w-[400px]">
+  //       <div className="w-[350px]">
   //         <Story />
   //       </div>
   //     ),
   //   ],
-} satisfies Meta<typeof Checkbox>;
+} satisfies Meta<typeof HoverCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Disabled: Story = {
+export const PositionTop: Story = {
   args: {
-    disabled: true,
-  },
-};
-
-export const WithLabel: Story = {
-  args: {
-    label: "Accept terms and conditions",
-  },
-};
-
-export const WithLabelDisabled: Story = {
-  args: {
-    ...WithLabel.args,
-    disabled: true,
+    side: "top",
   },
 };

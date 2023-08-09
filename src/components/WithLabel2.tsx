@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useId } from "react";
 import { cn } from "../utils/cn";
+
+type RenderProps = (props: {
+  className: string;
+  id: string;
+}) => React.ReactNode;
 
 type WithLabelProps = {
   className?: string;
   labelPosition?: "top" | "left" | "right";
-  label: (props: { className: string }) => React.ReactNode;
-  target: (props: { className: string }) => React.ReactNode;
+  label: RenderProps;
+  target: RenderProps;
 };
 
 export default function WithLabel2({
@@ -14,6 +19,8 @@ export default function WithLabel2({
   target,
   labelPosition = "top",
 }: WithLabelProps) {
+  const id = useId();
+
   return (
     <div
       className={cn(
@@ -23,8 +30,9 @@ export default function WithLabel2({
         className
       )}
     >
-      {target({ className: "peer" })}
+      {target({ id, className: "peer" })}
       {label({
+        id,
         className: cn(
           labelPosition === "top" && "mb-1",
           labelPosition === "left" && "mr-2",
